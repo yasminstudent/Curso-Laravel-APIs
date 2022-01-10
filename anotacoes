@@ -1,0 +1,95 @@
+------- O que é uma API? -------
+
+Application Programming Interface
+
+- Banco de dados
+- Servidor
+
+O backend fica totalmente desaclopado do frontend, permitindo que ele possa ser usado por mais de um sistema
+(mobile, web e etc)
+
+------- Como as APIs funcionam? -------
+
+Base (url padrão):
+https://seusite.com.br/api
+
+P/ enviar um comando/requisição/endpoint p/ uma API, deve-se escolher:
+    1. O verbo/método: GET, POST, PUT ou DELETE
+        GET -> pegar informações
+        POST -> cadastrar informações
+        PUT -> atualizar informações
+        DELETE -> excluir informações
+    2. A url:
+        Ex:
+            GET https://seusite.com.br/api/users
+            POST https://seusite.com.br/api/users body (nome, idade etc)
+            etc
+
+------- Entendendo JSON -------
+
+Estrutura:
+    {
+        nome: "Yasmin",
+        idade: {
+            terra: 19,
+            marte: 81
+        },
+        caracteristicas: [
+            "gostosa",
+            "programadora"
+            "einstein"
+        ],
+        habilidades: [
+            {nome: "programar", valor: 90},
+            {nome: "desenhar", valor: 75}
+        ]
+    }
+
+Usando:
+    nomeDoJSON.nome //Yasmin
+    nomeDoJSON.caracteristicas[0] //gostosa
+    nomeDoJSON.idade.marte //81
+    nomeDoJSON.habilidades[0].nome //programar
+
+------- Diferença entre API, Webservices e SDK -------
+
+API = Application Programming Interface
+Webservices = Web Services
+SDK = Software Development Kit
+
+API: liga sistema A com sistema B
+
+API x Webservice
+- Todo webservice é uma api, mas nem toda api é um webserivce
+- Um webservice é uma api que funciona através de requisições HTTP
+
+API x SDK
+- Um SDK é uma API, são arquivos que são baixados p/ serem usados no projeto
+
+------- CORS - Cross Origin Resource Sharing -------
+Sistema de proteção entre o navegador e o servidor de forma que apenas 1 ou X endereços
+específicos possa acessar uma API, por exemplo.
+
+(Também é possível permitir todos os endereços)
+
+- Permissão de Endereço (origem)
+- Permissão de Método (verbo)
+- Permissão de Cabeçalho (Headers)
+
+Arquivo: config/cors.php
+
+Ex de uso:
+'allowed_origins' => ['https://resttesttest.com']
+
+------- Autenticação Via API -------
+- Em uma boa API não existe sessão
+
+- Funciona via Token:
+    - O usuário realiza o login
+    - O sistema gera um token e associa ao usuário
+    - O token é retornado pela API e salvo na aplicação
+    - E então as requisições são acompanhadas pelo token
+
+- Existem duas formas de enviar o token na requisição
+1 - No corpo (body) ou como parâmetro da URL
+2 - No cabeçalho (header): Authorization: Bearer seutoken
